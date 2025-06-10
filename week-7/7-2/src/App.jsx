@@ -1,34 +1,34 @@
 import {useState, useContext} from 'react';
 import {CountContext} from './context.jsx' 
-import {RecoildRoot, useRecoilState, useRecoilvalue} from 'recoil';
-import {countAtom} from './store/atoms/count';
 
 function App() {
+  const [count, setCount] = useState(0); 
+
   return (
     <div>
-      <RecoilRoot>
-        <Count />
-      </RecoilRoot>
+      <CountContext.Provider value={count}>
+        <Count setCount={setCount} />
+      </CountContext.Provider>
     </div>
   )
 }
 
-function Count() {
+function Count({setCount}) {
   return <div>
     <CountRenderer/>
-    <Button/>
+    <Button setCount={setCount} />
 
   </div>
 }
 function CountRenderer() {
-  const count = useRecoilValue(countAtom);
+  const count = useContext(CountContext)
   return <div>
     {count}
   </div>
 }
 
 function Button({setCount}) {    
-  const [count, setCount] = useRecoilState(countAtom); 
+  const count = useContext(CountContext)
   return <div>
     <button onClick ={() => {
       setCount(count+1)
@@ -74,7 +74,6 @@ export default App
 // const Dashboard = lazy(() => import('./components/Dashboard'))
 // const Landing = lazy(() => import('./components/Landing'))
 import { createContext } from 'react';
-import { countAtom } from './store/atoms/count';
 
 // function App() {
 
