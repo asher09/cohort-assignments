@@ -1,41 +1,51 @@
-import {useState, useContext} from 'react';
-import {CountContext} from './context.jsx' 
+import React from 'react';
+import {RecoilRoot, useSetRecoilState, useRecoilValue} from 'recoil';
+import {countAtom} from './store/atoms/count';
+import {evenSelector} from './store/atoms/count';
 
 function App() {
-  const [count, setCount] = useState(0); 
-
   return (
     <div>
-      <CountContext.Provider value={count}>
-        <Count setCount={setCount} />
-      </CountContext.Provider>
+      <RecoilRoot>
+        <Count />
+      </RecoilRoot>
     </div>
   )
 }
 
-function Count({setCount}) {
+function Count() {
   return <div>
     <CountRenderer/>
-    <Button setCount={setCount} />
-
+    <Button/>
   </div>
 }
 function CountRenderer() {
-  const count = useContext(CountContext)
+  const count = useRecoilValue(countAtom);
   return <div>
-    {count}
+  <b>
+        {count}
+  </b>
+  <EvenCountRenderer/>
   </div>
 }
 
-function Button({setCount}) {    
-  const count = useContext(CountContext)
+function EvenCountRenderer() {
+  const isEven = useRecoilValue(evenSelector);
+  return <div>
+    {isEven ? "Even" : "Odd"}
+  </div>
+}
+
+function Button() {    
+  const setCount = useSetRecoilState(countAtom);
+  console.log("renrendered");
   return <div>
     <button onClick ={() => {
-      setCount(count+1)
+      setCount(count => count+1)
     }} >Increase</button>
         <button onClick ={() => {
-      setCount(count-1)
-    }} >Decrease</button>
+      setCount(count => count-1)
+    }} >Decrease</button> 
   </div>
 
 }
@@ -73,7 +83,10 @@ export default App
 
 // const Dashboard = lazy(() => import('./components/Dashboard'))
 // const Landing = lazy(() => import('./components/Landing'))
-import { createContext } from 'react';
+// import { createContext } from 'react';
+// import { countAtom } from './store/atoms/count';
+// import { useSetRecoilState } from './../../7-2/node_modules/recoil/index.d';
+// import { react } from '@vitejs/plugin-react';
 
 // function App() {
 
