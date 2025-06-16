@@ -44,7 +44,7 @@ return <div className="bg-slate-300 h-screen flex justify-center">
                         });
                         console.log("sign up response", response)
                         localStorage.setItem("token", response.data.token);
-                        navigate("/dashboard");
+                        navigate("/signin");
                 }} label={"Sign UP"} />
             </div>
             <BottomWarning label={"Already have an account?"} buttonText={"Signin"} to={("/signin") } />
