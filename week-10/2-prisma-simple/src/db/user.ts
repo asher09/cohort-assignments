@@ -13,7 +13,19 @@ const prisma = new PrismaClient();
  * }
  */
 export async function createUser(username: string, password: string, name: string) {
-    
+    const user  = await prisma.user.create({
+        data: {
+            username,
+            password,
+            name
+        }
+    })
+    return {
+        id: user.id,
+        name: user.name,
+        username: user.username,
+        password: user.password
+    }
 }
 
 /*
@@ -25,5 +37,18 @@ export async function createUser(username: string, password: string, name: strin
  * }
  */
 export async function getUser(userId: number) {
-    
+    const user = await prisma.user.findUnique({
+        where: {
+            id: userId
+        }
+    })
+    if(!user) {
+        throw new Error(`User with id ${userId} not found`);
+    }
+    return {
+        id: user.id,
+        username: user.username,
+        password: user.password,
+        name: user.name
+    }
 }

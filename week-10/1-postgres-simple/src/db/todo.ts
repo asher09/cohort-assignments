@@ -12,8 +12,10 @@ import { client } from "..";
 
 export async function createTodo(userId: number, title: string, description: string) {
     const insertquery = `
-        INSERT INTO users(userId, title, description, done);
-        VALUES ($1, $2, $3) `;
+        INSERT INTO todos(user_id, title, description, done)
+        VALUES ($1, $2, $3, $4) 
+        RETURNING *;
+    `;
 
     const result = await client.query(insertquery, [userId, title, description, false]);
 
@@ -74,10 +76,16 @@ export async function getTodos(userId: number) {
     const selectQuery = `
         SELECT * FROM todos
         WHERE user_id = $1
-        ORDER BY id DESC:
+        ORDER BY id DESC;
     `;
 
     const result = await client.query(selectQuery, [userId]);
 
-    return result
+    return result.rows.map(todo => ({
+        id: todo.id,
+        title: todo.title,
+        description: todo.description,
+        done: todo.done,
+        user_id: todo.user_id
+    }));
 }
