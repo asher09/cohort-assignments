@@ -7,8 +7,8 @@
   //   "nodejs_compat"
   // ],
   "vars": {
-    "DATABASE_URL":"your-db-string",
-    "JWT_SECRET": "your-secret-key",
+    "DATABASE_URL":"prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiMDFKWVNGWDRESlZCUVBCUlNUNDFYMzg2TkQiLCJ0ZW5hbnRfaWQiOiI1NmMzYTdlOWNmMjE3ZmU0MzY4OWJiY2RiMzM4ZGY1NWUxMWRlMjJkNGY0MmIzZmJmOWFkNGMwYjYzZTM5ZDM4IiwiaW50ZXJuYWxfc2VjcmV0IjoiYjQ2ZTZmYzMtZGQ4ZS00YjBmLTg1NmYtMjk4ZjIwM2NiODc1In0.kUOeaq74ahY_rH9hBmgdaomq0qW2dpWJheDQdvQlUt4",
+    "JWT_SECRET": "secretkey123",
   },
 
   // "kv_namespaces": [

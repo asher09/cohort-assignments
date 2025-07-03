@@ -7,7 +7,7 @@ export const Quotes = () => {
                 <div className="max-w-lg" >
 
                     <div className="max-w-lg  text-3xl font-semibold" >
-                        "The customer service i recieved was exceptional. The support team went above and beyond to address my concerns"
+                        "The customer service i received was exceptional. The support team went above and beyond to address my concerns"
                     </div>
                     <div className="max-w-lg text-xl font-semibold mt-3" >
                         Julies Winfield   
