@@ -103,14 +103,3 @@ npm run dev
 
 ---
 
-## Deployment
-
-### Frontend
-
-- Deploy to [Vercel](https://vercel.com/) or any static host.
-- Make sure your `vercel.json` handles SPA routing.
-
-### Backend
-
-- Deploy to [Cloudflare Workers](https://workers.cloudflare.com/).
-
