@@ -63,6 +63,6 @@ userRouter.post('/signin', async (c) => {
     return c.text('Invalid login credentials')
   }
 
-  const jwtToken = await sign({id: user.id}, c.env.JWT_SECRET )
-  return c.json({jwtToken})
+  const token = await sign({id: user.id}, c.env.JWT_SECRET )
+  return c.json({token})
 })
