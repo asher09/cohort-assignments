@@ -1,20 +1,31 @@
 import { NextRequest, NextResponse } from "next/server"
-import {PrismaClient} from "@prisma/client"
+import client from "@/db";
 
-const client = new PrismaClient()
-
-export async function POST( req: NextRequest) {
+export async function GET(req: NextRequest) {
+    const user = await client.user.findFirst();
     
-    const body = await req.json()
-    const user = await client.user.create({
-        data: {
-            email: body.email,
-            password: body.password
-        }
-    })
-    console.log(user.id);
+    if(!user) {
+        return NextResponse.json({error: "No user found"})
+    }
     return NextResponse.json({
-        message: "req sent"
-    })
+        email: user.email})
 
 }
+
+
+// export async function POST( req: NextRequest) {
+    
+//     const body = await req.json()
+//     const user = await client.user.create({
+//         data: {
+//             email: body.email,
+//             password: body.password
+//         }
+//     })
+//     console.log(user.id);
+//     return NextResponse.json({
+//         message: "req sent",
+//         user: user.id
+//     })
+
+// }

@@ -2,6 +2,7 @@
 import {useState} from "react";
 import axios from "axios";
 import {useRouter} from "next/navigation";
+import {signup} from "@/app/actions/user";
 
 export const Signin =( ) => {
 
@@ -10,10 +11,7 @@ export const Signin =( ) => {
     const router = useRouter();
 
      async function handler() {
-        await axios.post('http://localhost:3000/api/user', {
-            email,
-            password
-        })
+        signup(email, password)
         router.push('/')
 
     }

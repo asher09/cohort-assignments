@@ -2,7 +2,7 @@ import Image from "next/image";
 import axios from 'axios';
 
  async function fetchData() {
-  await new Promise((r) => setTimeout(r, 5000))
+  // await new Promise((r) => setTimeout(r, 5000))
     const response = await axios.get('https://jsonplaceholder.typicode.com/users')
     return response.data[0];
   }
