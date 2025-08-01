@@ -1,4 +1,4 @@
-import { Hono } from 'hono'
+    import { Hono } from 'hono'
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from "@prisma/extension-accelerate";
 import {sign} from 'hono/jwt';
@@ -16,7 +16,7 @@ export const userRouter = new Hono<{
 
 userRouter.post('/signup', async (c) => {
   const prisma = new PrismaClient({
-    datasourceUrl: c.env.DATABASE_URL,
+    datasourceUrl: c.env.DATABASE_URL, 
   }).$extends(withAccelerate())
 
   const body = await c.req.json();

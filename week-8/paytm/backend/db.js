@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.DB).then(() => {
     console.log("Connected to DB");
 }) 
-
+    
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
