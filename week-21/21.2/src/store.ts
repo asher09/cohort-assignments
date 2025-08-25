@@ -9,8 +9,17 @@ interface Games {
 
 export class GameManager {
     games: Games[] = [];
-    constructor() {
+    private static instance: GameManager;
+    private constructor() {
         this.games = [];
+    }
+
+    static getInstance() {
+        if(GameManager.instance) {
+            return GameManager.instance
+        }
+        GameManager.instance = new GameManager();
+        return GameManager.instance
     }
     
     AddMove(gameId: String, move: String) {
@@ -35,4 +44,4 @@ export class GameManager {
 
 }
 
-export const gameManager = new GameManager();
+export const gameManager = GameManager.getInstance();
